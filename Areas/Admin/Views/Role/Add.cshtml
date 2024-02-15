@@ -1,0 +1,20 @@
+﻿@model AppRole
+
+<div class="col-lg-6">
+    <form asp-controller="Role" asp-action="Add" method="post" enctype="multipart/form-data">
+        <div class="card">
+            <div class="card-header"><strong>Role</strong><small> Form</small></div>
+            <div class="card-body card-block">
+                <div class="form-group">
+                    <label asp-for="Name" class=" form-control-label">Name</label>
+                    <input asp-for="Name" type="text" placeholder="Name" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-lg btn-info btn-block">
+                    <span id="payment-button-amount">Add</span>
+                    <span id="payment-button-sending" style="display:none;">Sending…</span>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+

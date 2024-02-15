@@ -1,0 +1,45 @@
+﻿@model AppRole
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Dashboard</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="#">Table</a></li>
+                            <li class="active">Data table</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="col-lg-6">
+        <form asp-controller="Role" asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div class="card">
+                <div class="card-header"><strong>Role</strong><small> Form</small></div>
+                <div class="card-body card-block">
+                    <div class="form-group">
+                        <label asp-for="Name" class=" form-control-label">Name</label>
+                        <input asp-for="Name" type="text" placeholder="Name" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-lg btn-info btn-block">
+                        <span id="payment-button-amount">Edit</span>
+                        <span id="payment-button-sending" style="display:none;">Sending…</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

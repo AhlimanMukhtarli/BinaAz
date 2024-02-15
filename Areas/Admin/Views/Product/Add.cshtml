@@ -1,0 +1,120 @@
+﻿@model Product
+
+<div class="col-lg-6">
+    <form asp-controller="Product" asp-action="Add" method="post" enctype="multipart/form-data">
+        <div class="card">
+            <div class="card-header"><strong>Product</strong><small> Form</small></div>
+            <div class="card-body card-block">
+                <div class="form-group">
+                    <label asp-for="Name" class=" form-control-label">Name</label>
+                    <input asp-for="Name" type="text" placeholder="Name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price" class="form-control-label">Price</label>
+                    <input type="text" asp-for="Price" placeholder="Price" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label asp-for="CatgeoryId" class="form-control-label">Select Category</label>
+                        <select asp-for="CatgeoryId" id="select" class="form-control">
+                             <option value="0">Please select</option>
+                        @foreach (var item in ViewBag.Categories)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                       
+                        </select>
+                </div>
+                <div class="form-img">
+                    <h1>Product Image</h1>
+                    <label class="input-preview" asp-for="ImgFile">
+                        <input type="file" class="input-preview__src" asp-for="ImgFile" />
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-lg btn-info btn-block">
+                    <span id="payment-button-amount">Add</span>
+                    <span id="payment-button-sending" style="display:none;">Sending…</span>
+                </button>
+            </div>
+        </div>
+    </form>
+<style>
+    .form-img {
+        display: flex;
+        font-size: 1rem;
+        margin: 0 auto;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        color: rgb(20, 20, 28);
+    }
+
+    .input-preview__src {
+        display: none;
+    }
+
+    .input-preview {
+        border: dashed black 0.175em;
+        border-radius: 0.5em;
+        width: 400px;
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: relative;
+        transition: ease-in-out 750ms;
+    }
+
+        .input-preview::after {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            transform: translateY(50%);
+            content: "Choose a file...";
+            font-style: italic;
+            font-size: 1em;
+        }
+
+    .has-image::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(50, 50, 50, 0.5);
+        content: " ";
+        transition: ease-in-out 750ms;
+    }
+
+    .has-image::after {
+        content: "Choose another file...";
+        color: white;
+    }
+
+</style>
+</div>
+@section scripts{
+    <script>
+        const fileImage = document.querySelector('.input-preview__src');
+        const filePreview = document.querySelector('.input-preview');
+
+        fileImage.onchange = function () {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                // get loaded data and render thumbnail.
+                filePreview.style.backgroundImage = "url(" + e.target.result + ")";
+                filePreview.classList.add("has-image");
+            };
+
+            // read the image file as a data URL.
+            reader.readAsDataURL(this.files[0]);
+        };
+    </script>
+ }
+
