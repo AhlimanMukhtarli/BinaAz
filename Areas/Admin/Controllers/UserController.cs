@@ -1,9 +1,9 @@
-﻿using ClothingShop.DTO;
-using ClothingShop.Models;
+﻿using BinaAz.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using BinaAz.Models;
 
-namespace ClothingShop.Areas.Admin.Controllers
+namespace BinaAz.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class UserController : Controller
@@ -17,10 +17,16 @@ namespace ClothingShop.Areas.Admin.Controllers
             _roleManager = roleManager;
         }
 
-        public IActionResult User()
+        public IActionResult GetUser()
         {
             return View(_userManager.Users.ToList());
         }
-       
+        public async Task<IActionResult> Delete(string id)
+        {
+            var result = await _userManager.FindByIdAsync(id);
+            await _userManager.DeleteAsync(result);
+            return RedirectToAction("GetUser");
+        }
+
     }
 }

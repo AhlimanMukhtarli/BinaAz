@@ -1,82 +1,147 @@
-﻿using ClothingShop.Extensions;
-using ClothingShop.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using BinaAz.Models;
 
-namespace ClothingShop.Areas.Admin.Controllers
+namespace BinaAz.Controllers
 {
-    [Area("Admin")]
     public class ProductController : Controller
     {
-        private readonly MyDbContext _context;
-        public ProductController(MyDbContext context)
+        private readonly AppDbContext _context;
+
+        public ProductController(AppDbContext context)
         {
             _context = context;
         }
-        public IActionResult Product()
+
+        // GET: Products
+        public IActionResult Index()
         {
-            return View(_context.Products.Include(x=>x.Category).ToList());
+            var products = _context.Products.Include(p => p.Category).ToList();
+            return View(products);
         }
-        [HttpGet]
-        public IActionResult Add()
+
+        // GET: Products/Details/5
+        public IActionResult Details(int? id)
         {
-            ViewBag.Categories = _context.Categories.ToList();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = _context.Products
+                .Include(p => p.Category)
+                .FirstOrDefault(m => m.Id == id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
+
+        // GET: Products/Create
+        public IActionResult Create()
+        {
             return View();
         }
+
+        // POST: Products/Create
         [HttpPost]
-        public async Task<IActionResult> Add(Product product)
+        [ValidateAntiForgeryToken]
+        public IActionResult Create([Bind("Id,Name,CategoryId,BrandId,Price,StockQuantity,Description,IsActive")] Product product)
         {
-            if (FileExtensions.IsImage(product.ImgFile))
+            if (ModelState.IsValid)
             {
-                string nameImg = await FileExtensions.SaveAsync(product.ImgFile, "products");
-                product.Image = nameImg;
-                _context.Products.Add(product);
+                _context.Add(product);
                 _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
             }
-            else
-            {
-                return RedirectToAction("Add");
-            }
-            return RedirectToAction("Product");
+            return View(product);
         }
-        public IActionResult Delete(int id)
+
+        // GET: Products/Edit/5
+        public IActionResult Edit(int? id)
         {
-            var p = _context.Products.Find(id);
-            if (p != null)
+            if (id == null)
             {
-                _context.Products.Remove(p);
+                return NotFound();
             }
-            _context.SaveChanges();
-            return RedirectToAction("Product");
+
+            var product = _context.Products.Find(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return View(product);
         }
-        [HttpGet]
-        public IActionResult Edit(int id)
-        {
-            ViewBag.Categories = _context.Categories.ToList();
-            return View(_context.Products.Find(id));
-        }
+
+        // POST: Products/Edit/5
         [HttpPost]
-        public async Task<IActionResult> Edit(Product newP)
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, [Bind("Id,Name,CategoryId,BrandId,Price,StockQuantity,Description,IsActive")] Product product)
         {
-            var p = _context.Products.Find(newP.Id);
-            if (p != null)
+            if (id != product.Id)
             {
-                if (FileExtensions.IsImage(newP.ImgFile))
-                {
-                    string nameImg = await FileExtensions.SaveAsync(newP.ImgFile, "products");
-                    p.ImgFile = newP.ImgFile;
-                    p.Image = nameImg;
-                    p.Name=newP.Name; 
-                    p.Price= newP.Price;
-                    _context.SaveChanges();
-                    return RedirectToAction("Product");
-                }
-                else
-                {
-                    return RedirectToAction("Edit");
-                }
+                return NotFound();
             }
-            return RedirectToAction("Edit");
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(product);
+                    _context.SaveChanges();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ProductExists(product.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(product);
+        }
+
+        // GET: Products/Delete/5
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = _context.Products
+                .FirstOrDefault(m => m.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
+
+        // POST: Products/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var product = _context.Products.Find(id);
+            _context.Products.Remove(product);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool ProductExists(int id)
+        {
+            return _context.Products.Any(e => e.Id == id);
         }
     }
 }

@@ -1,9 +1,11 @@
-﻿using ClothingShop.DTO;
-using ClothingShop.Models;
+﻿using BinaAz.Models.ViewModels;
+using BinaAz.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ClothingShop.Areas.Admin.Controllers
+using BinaAz.Models.ViewModels;
+
+namespace BinaAz.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class RoleController : Controller
@@ -17,7 +19,7 @@ namespace ClothingShop.Areas.Admin.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult Role()
+        public IActionResult GetRole()
         {
             return View(_roleManager.Roles.ToList());
         }
@@ -27,14 +29,14 @@ namespace ClothingShop.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Add(Role role)
+        public async Task<IActionResult> Add(AppRole role)
         {
             AppRole appRole = new AppRole()
             {
                 Name = role.Name
             };
             var result = await _roleManager.CreateAsync(appRole);
-            return RedirectToAction("Role");
+            return RedirectToAction("GetRole");
         }
         [HttpGet]
         public async Task<IActionResult> Edit(string id)
@@ -46,13 +48,13 @@ namespace ClothingShop.Areas.Admin.Controllers
         public async Task<IActionResult> Edit(AppRole role)
         {
             await _roleManager.UpdateAsync(role);
-            return RedirectToAction("Role");
+            return RedirectToAction("GetRole");
         }
         public async Task<IActionResult> Delete(string id)
         {
             var result = await _roleManager.FindByIdAsync(id);
             await _roleManager.DeleteAsync(result);
-            return RedirectToAction("Role");
+            return RedirectToAction("GetRole");
         }
         [HttpGet]
         public async Task<IActionResult> AssignRole(string id)
@@ -91,7 +93,7 @@ namespace ClothingShop.Areas.Admin.Controllers
                 }
             }
 
-            return RedirectToAction("User","User");
+            return RedirectToAction("GetUser", "User");
         }
     }
 }

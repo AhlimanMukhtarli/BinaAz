@@ -1,8 +1,553 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+﻿<div class="slider-section">
+	<div id="premium-bar">
+		<div class="container">
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="index.html"><img src="~/sweethome/img/logo.png" alt="logo"></a>
+					</div>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav navbar-right">
+							<li class="active"><a href="index.html">Home</a></li>
+							<li><a href="property-listing.html">Listings</a></li>
+							<li><a href="property-details.html">Property Details</a></li>
+							<li><a href="agents.html">agents</a></li>
+							<li><a href="blog.html">News</a></li>
+							<li><a href="single.html">Single Post</a></li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a href="#">Action</a></li>
+									<li><a href="#">Another action</a></li>
+									<li><a href="#">Something else here</a></li>
+									<li><a href="#">One more separated link</a></li>
+								</ul>
+							</li>
+							<li><a href="contact.html">contact</a></li>
+						</ul>
+					</div>
+					<!-- /.navbar-collapse -->
+				</div>
+				<!-- /.container-fluid -->
+			</nav>
+		</div>
+	</div>
+	<!-- Slider-Section -->
+	<div class="main-flexslider">
+		<ul class="slides">
+			@*<li class='slides' id='slide-n1'>
+				<img src="~/sweethome/img/slide-01.jpg" alt="slide 01">
+				<div class="slide-box">
+					<h2>6571 Mill Creek Cir</h2>
+					<p>
+						Situated on a half-acre corner allotment with two separate titles in the wonderful country township of Paruna, only 20 minutes drive from the town of Loxton.
+					</p>
+					<ul class="slide-item-features">
+						<li><span class="fa fa-arrows-alt"></span>5000 Sq Ft</li>
+						<li><span class="fa fa-inbox"></span>3 bedrooms</li>
+						<li><span class="fa fa-male"></span>2 bathrooms</li>
+						<li><span class="fa fa-truck"></span>1 garage</li>
+					</ul>
+					<div class="slider-buttons-wrapper">
+						<a href="#" class="yellow-btn">$370,000</a>
+						<a href="#" class="gray-btn"><span class="fa fa-file-text-o"></span>Details</a>
+					</div>
+				</div>
+			</li>
+			<li class='slides' id='slide-n2'>
+				<img src="~/sweethome/img/slide-02.jpg" alt="slide">
+				<div class="slide-box">
+					<h2>114-120 Joynton Avenue, Zetland, NSW 2017</h2>
+					<p>
+						Situated on a half-acre corner allotment with two separate titles in the wonderful country township of Paruna, only 20 minutes drive from the town of Loxton.
+					</p>
+					<ul class="slide-item-features">
+						<li><span class="fa fa-arrows-alt"></span>5000 Sq Ft</li>
+						<li><span class="fa fa-inbox"></span>3 bedrooms</li>
+						<li><span class="fa fa-male"></span>2 bathrooms</li>
+						<li><span class="fa fa-truck"></span>1 garage</li>
+					</ul>
+					<div class="slider-buttons-wrapper">
+						<a href="#" class="yellow-btn">$370,000</a>
+						<a href="#" class="gray-btn"><span class="fa fa-file-text-o"></span>Details</a>
+					</div>
+				</div>
+			</li>*@
+			<li class='slides' id='slide-n3'>
+				<img src="~/sweethome/img/slide-03.jpg" alt="slide">
+				<div class="slide-box">
+					<h2>2211 Summer Ridge Dr</h2>
+					<p>
+						Situated on a half-acre corner allotment with two separate titles in the wonderful country township of Paruna, only 20 minutes drive from the town of Loxton.
+					</p>
+					<ul class="slide-item-features">
+						<li><span class="fa fa-arrows-alt"></span>5000 Sq Ft</li>
+						<li><span class="fa fa-inbox"></span>3 bedrooms</li>
+						<li><span class="fa fa-male"></span>2 bathrooms</li>
+						<li><span class="fa fa-truck"></span>1 garage</li>
+					</ul>
+					<div class="slider-buttons-wrapper">
+						<a href="#" class="yellow-btn">$370,000</a>
+						<a href="#" class="gray-btn"><span class="fa fa-file-text-o"></span>Details</a>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+<!-- Search-Section -->
+<div class="search-section">
+	<div class="container">
+		<form>
+			<div class="select-wrapper select-smaill" id='select-rent'>
+				<p>
+					Rent or Sale
+				</p>
+				<select class='elselect'>
+					<option value="any">any</option>
+					<option value="potato-chips">Rent</option>
+					<option value="chips-and-salsa">Sale</option>
+				</select>
+			</div>
+			<div class="select-wrapper select-big" id='select-property'>
+				<p>
+					Property type
+				</p>
+				<select class='elselect'>
+					<option value="any">any</option>
+					<option value="potato-chips">Potato chips</option>
+					<option value="chips-and-salsa">Chips and salsa</option>
+					<option value="cookies">Cookies</option>
+					<option value="doritos">Doritos</option>
+					<option value="pringles">Pringles</option>
+					<option value="hot-pockets">Hot pockets</option>
+				</select>
+			</div>
+			<div class="select-wrapper select-big">
+				<p>
+					locations
+				</p>
+				<select class='elselect'>
+					<option value="any">any</option>
+					<option value="potato-chips">Potato chips</option>
+					<option value="chips-and-salsa">Chips and salsa</option>
+					<option value="cookies">Cookies</option>
+					<option value="doritos">Doritos</option>
+					<option value="pringles">Pringles</option>
+					<option value="hot-pockets">Hot pockets</option>
+				</select>
+			</div>
+			<div class="select-wrapper select-small">
+				<p>
+					Beds
+				</p>
+				<select class='elselect'>
+					<option value="any">any</option>
+					<option value="potato-chips">Potato chips</option>
+					<option value="chips-and-salsa">Chips and salsa</option>
+					<option value="cookies">Cookies</option>
+					<option value="doritos">Doritos</option>
+					<option value="pringles">Pringles</option>
+					<option value="hot-pockets">Hot pockets</option>
+				</select>
+			</div>
+			<div class="select-wrapper select-small">
+				<p>
+					Baths
+				</p>
+				<select class='elselect'>
+					<option value="any">any</option>
+					<option value="potato-chips">Potato chips</option>
+					<option value="chips-and-salsa">Chips and salsa</option>
+					<option value="cookies">Cookies</option>
+					<option value="doritos">Doritos</option>
+					<option value="pringles">Pringles</option>
+					<option value="hot-pockets">Hot pockets</option>
+				</select>
+			</div>
+			<div class="select-wrapper select-medium">
+				<p>
+					Sq ft
+				</p>
+				<select class='elselect'>
+					<option value="any">any</option>
+					<option value="potato-chips">Potato chips</option>
+					<option value="chips-and-salsa">Chips and salsa</option>
+					<option value="cookies">Cookies</option>
+					<option value="doritos">Doritos</option>
+					<option value="pringles">Pringles</option>
+					<option value="hot-pockets">Hot pockets</option>
+				</select>
+			</div>
+			<div class="select-wrapper select-medium">
+				<p>
+					min price
+				</p>
+				<select class='elselect'>
+					<option value="any">any</option>
+					<option value="potato-chips">Potato chips</option>
+					<option value="chips-and-salsa">Chips and salsa</option>
+					<option value="cookies">Cookies</option>
+					<option value="doritos">Doritos</option>
+					<option value="pringles">Pringles</option>
+					<option value="hot-pockets">Hot pockets</option>
+				</select>
+			</div>
+			<div class="select-wrapper select-medium">
+				<p>
+					Max price
+				</p>
+				<select class='elselect'>
+					<option value="any">any</option>
+					<option value="potato-chips">Potato chips</option>
+					<option value="chips-and-salsa">Chips and salsa</option>
+					<option value="cookies">Cookies</option>
+					<option value="doritos">Doritos</option>
+					<option value="pringles">Pringles</option>
+					<option value="hot-pockets">Hot pockets</option>
+				</select>
+			</div>
+			<input type="submit" value="search" class='yellow-btn'>
+		</form>
+	</div>
+</div>
+<!-- Recent-Listings-Section -->
+<div class="recent-listings">
+	<div class="container">
+		<div class="title-box">
+			<h3>Recent Listings</h3>
+			<div class="bordered">
+			</div>
+		</div>
+		<div class="row listings-items-wrapper">
+			<div class="col-md-4 listing-single-item">
+				<div class="item-inner">
+					<div class="image-wrapper">
+						<img src="~/sweethome/img/listings/02_img-1.png" alt="gallery">
+						<a href="#" class='fa fa-home property-type-icon'></a>
+						<a href="#" class='featured'><i class='fa fa-star'></i>featured</a>
+					</div>
+					<div class="desc-box">
+						<h4><a href="#">2211 Summer Ridge Dr</a></h4>
+						<ul class="slide-item-features item-features">
+							<li><span class="fa fa-arrows-alt"></span>5000 Sq Ft</li>
+							<li><span class="fa fa-male"></span>2 bathrooms</li>
+							<li><span class="fa fa-inbox"></span>3 bedrooms</li>
+						</ul>
+						<div class="buttons-wrapper">
+							<a href="#" class="yellow-btn">$370,000</a>
+							<a href="#" class="gray-btn"><span class="fa fa-file-text-o"></span>Details</a>
+						</div>
+						<div class="clearfix">
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Single-item -->
+			<div class="col-md-4 listing-single-item">
+				<div class="item-inner">
+					<div class="image-wrapper">
+						<img src="~/sweethome/img/listings/03_img-2.png" alt="gallery">
+						<a href="#" class='fa fa-building-o property-type-icon'></a>
+					</div>
+					<div class="desc-box">
+						<h4><a href="#">6571 Mill Creek Cir</a></h4>
+						<ul class="slide-item-features item-features">
+							<li><span class="fa fa-arrows-alt"></span>5000 Sq Ft</li>
+							<li><span class="fa fa-male"></span>2 bathrooms</li>
+							<li><span class="fa fa-inbox"></span>3 bedrooms</li>
+						</ul>
+						<div class="buttons-wrapper">
+							<a href="#" class="yellow-btn">$370,000</a>
+							<a href="#" class="gray-btn"><span class="fa fa-file-text-o"></span>Details</a>
+						</div>
+						<div class="clearfix">
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Single-item -->
+			<div class="col-md-4 listing-single-item">
+				<div class="item-inner">
+					<div class="image-wrapper">
+						<img src="~/sweethome/img/listings/04_img-3.png" alt="gallery">
+						<a href="#" class='fa fa-home property-type-icon'></a>
+					</div>
+					<div class="desc-box">
+						<h4><a href="#">1141 14Th Street South</a></h4>
+						<ul class="slide-item-features item-features">
+							<li><span class="fa fa-arrows-alt"></span>5000 Sq Ft</li>
+							<li><span class="fa fa-male"></span>2 bathrooms</li>
+							<li><span class="fa fa-inbox"></span>3 bedrooms</li>
+						</ul>
+						<div class="buttons-wrapper">
+							<a href="#" class="yellow-btn">$370,000</a>
+							<a href="#" class="gray-btn"><span class="fa fa-file-text-o"></span>Details</a>
+						</div>
+						<div class="clearfix">
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Single-item -->
+			<div class="col-md-4 listing-single-item">
+				<div class="item-inner">
+					<div class="image-wrapper">
+						<img src="~/sweethome/img/listings/05_img-4.png" alt="gallery">
+						<a href="#" class='fa fa-building-o property-type-icon'></a>
+					</div>
+					<div class="desc-box">
+						<h4><a href="#">2627 Garry St</a></h4>
+						<ul class="slide-item-features item-features">
+							<li><span class="fa fa-arrows-alt"></span>5000 Sq Ft</li>
+							<li><span class="fa fa-male"></span>2 bathrooms</li>
+							<li><span class="fa fa-inbox"></span>3 bedrooms</li>
+						</ul>
+						<div class="buttons-wrapper">
+							<a href="#" class="yellow-btn">$370,000</a>
+							<a href="#" class="gray-btn"><span class="fa fa-file-text-o"></span>Details</a>
+						</div>
+						<div class="clearfix">
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Single-item -->
+			<div class="col-md-4 listing-single-item">
+				<div class="item-inner">
+					<div class="image-wrapper">
+						<img src="~/sweethome/img/listings/06_img-5.png" alt="gallery">
+						<a href="#" class='fa fa-home property-type-icon'></a>
+						<a href="#" class='featured'><i class='fa fa-star'></i>featured</a>
+					</div>
+					<div class="desc-box">
+						<h4><a href="#">2222 N 2Nd Ave Unit: 311</a></h4>
+						<ul class="slide-item-features item-features">
+							<li><span class="fa fa-arrows-alt"></span>5000 Sq Ft</li>
+							<li><span class="fa fa-male"></span>2 bathrooms</li>
+							<li><span class="fa fa-inbox"></span>3 bedrooms</li>
+						</ul>
+						<div class="buttons-wrapper">
+							<a href="#" class="yellow-btn">$370,000</a>
+							<a href="#" class="gray-btn"><span class="fa fa-file-text-o"></span>Details</a>
+						</div>
+						<div class="clearfix">
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Single-item -->
+			<div class="col-md-4 listing-single-item">
+				<div class="item-inner">
+					<div class="image-wrapper">
+						<img src="~/sweethome/img/listings/07_img-6.png" alt="gallery">
+						<a href="#" class='fa fa-home property-type-icon'></a>
+					</div>
+					<div class="desc-box">
+						<h4><a href="#">1436 18Th Street South</a></h4>
+						<ul class="slide-item-features item-features">
+							<li><span class="fa fa-arrows-alt"></span>5000 Sq Ft</li>
+							<li><span class="fa fa-male"></span>2 bathrooms</li>
+							<li><span class="fa fa-inbox"></span>3 bedrooms</li>
+						</ul>
+						<div class="buttons-wrapper">
+							<a href="#" class="yellow-btn">$370,000</a>
+							<a href="#" class="gray-btn"><span class="fa fa-file-text-o"></span>Details</a>
+						</div>
+						<div class="clearfix">
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Single-item -->
+		</div>
+	</div>
+</div>
+<!-- Agents-Section -->
+<div class="agents-section">
+	<div class="container">
+		<div class="title-box">
+			<h3>our agents</h3>
+			<div class="bordered">
+			</div>
+		</div>
+		<div class="owl-carousel agents-slider">
+			<div class="single-agent">
+				<div class="image-box">
+					<img src="~/sweethome/img/agents/08_agent-photo1.png" alt="agent">
+					<ul class="social-icons">
+						<li><a href="#" class="fa fa-google-plus"></a></li>
+						<li><a href="#" class="fa fa-twitter"></a></li>
+						<li><a href="#" class="fa fa-pinterest"></a></li>
+						<li><a href="#" class="fa fa-dribbble"></a></li>
+						<li><a href="#" class="fa fa-linkedin"></a></li>
+						<li><a href="#" class="fa fa-facebook"></a></li>
+					</ul>
+				</div>
+				<div class="desc-box">
+					<h4>Robb Hatman</h4>
+					<p class="person-number">
+						<i class="fa fa-phone"></i> 900 123 456 789
+					</p>
+					<p class="person-email">
+						<i class="fa fa-envelope"></i> robbhatman@sweethome.com
+					</p>
+					<p class="person-fax">
+						<i class="fa fa-print"></i> 900 123 456 789
+					</p>
+					<a href="#" class='gray-btn'>view full profile</a>
+				</div>
+			</div>
+			<div class="single-agent">
+				<div class="image-box">
+					<img src="~/sweethome/img/agents/09_agent-photo2.png" alt="agent">
+					<ul class="social-icons">
+						<li><a href="#" class="fa fa-google-plus"></a></li>
+						<li><a href="#" class="fa fa-twitter"></a></li>
+						<li><a href="#" class="fa fa-pinterest"></a></li>
+						<li><a href="#" class="fa fa-dribbble"></a></li>
+						<li><a href="#" class="fa fa-linkedin"></a></li>
+						<li><a href="#" class="fa fa-facebook"></a></li>
+					</ul>
+				</div>
+				<div class="desc-box">
+					<h4>Robb Hatman</h4>
+					<p class="person-number">
+						<i class="fa fa-phone"></i> 900 123 456 789
+					</p>
+					<p class="person-email">
+						<i class="fa fa-envelope"></i> robbhatman@sweethome.com
+					</p>
+					<p class="person-fax">
+						<i class="fa fa-print"></i> 900 123 456 789
+					</p>
+					<a href="#" class='gray-btn'>view full profile</a>
+				</div>
+			</div>
+			<div class="single-agent">
+				<div class="image-box">
+					<img src="~/sweethome/img/agents/08_agent-photo1.png" alt="agent">
+					<ul class="social-icons">
+						<li><a href="#" class="fa fa-google-plus"></a></li>
+						<li><a href="#" class="fa fa-twitter"></a></li>
+						<li><a href="#" class="fa fa-pinterest"></a></li>
+						<li><a href="#" class="fa fa-dribbble"></a></li>
+						<li><a href="#" class="fa fa-linkedin"></a></li>
+						<li><a href="#" class="fa fa-facebook"></a></li>
+					</ul>
+				</div>
+				<div class="desc-box">
+					<h4>Robb Hatman</h4>
+					<p class="person-number">
+						<i class="fa fa-phone"></i> 900 123 456 789
+					</p>
+					<p class="person-email">
+						<i class="fa fa-envelope"></i> robbhatman@sweethome.com
+					</p>
+					<p class="person-fax">
+						<i class="fa fa-print"></i> 900 123 456 789
+					</p>
+					<a href="#" class='gray-btn'>view full profile</a>
+				</div>
+			</div>
+			<div class="single-agent">
+				<div class="image-box">
+					<img src="~/sweethome/img/agents/09_agent-photo2.png" alt="agent">
+					<ul class="social-icons">
+						<li><a href="#" class="fa fa-google-plus"></a></li>
+						<li><a href="#" class="fa fa-twitter"></a></li>
+						<li><a href="#" class="fa fa-pinterest"></a></li>
+						<li><a href="#" class="fa fa-dribbble"></a></li>
+						<li><a href="#" class="fa fa-linkedin"></a></li>
+						<li><a href="#" class="fa fa-facebook"></a></li>
+					</ul>
+				</div>
+				<div class="desc-box">
+					<h4>Robb Hatman</h4>
+					<p class="person-number">
+						<i class="fa fa-phone"></i> 900 123 456 789
+					</p>
+					<p class="person-email">
+						<i class="fa fa-envelope"></i> robbhatman@sweethome.com
+					</p>
+					<p class="person-fax">
+						<i class="fa fa-print"></i> 900 123 456 789
+					</p>
+					<a href="#" class='gray-btn'>view full profile</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Services-Section -->
+<div class="services-section">
+	<div class="container">
+		<div class="title-box">
+			<h3>our services</h3>
+			<div class="bordered">
+			</div>
+		</div>
+		<div class="services-wrapper">
+			<div class="col-md-3 single-service">
+				<div class="bordered top-bordered">
+				</div>
+				<h4>Unlimited Colors</h4>
+				<p>
+					fully customizable
+				</p>
+				<div class="fa fa-flask icon-service">
+				</div>
+				<div class="bordered">
+				</div>
+				<a href="#" class='readmore'>+ read more</a>
+			</div>
+			<div class="col-md-3 single-service">
+				<div class="bordered top-bordered">
+				</div>
+				<h4>Optimized Code</h4>
+				<p>
+					clean & well comented code
+				</p>
+				<div class="fa fa-clipboard icon-service">
+				</div>
+				<div class="bordered">
+				</div>
+				<a href="#" class='readmore'>+ read more</a>
+			</div>
+			<div class="col-md-3 single-service">
+				<div class="bordered top-bordered">
+				</div>
+				<h4>Seo Friendly</h4>
+				<p>
+					optimized for search engines
+				</p>
+				<div class="fa fa-globe icon-service">
+				</div>
+				<div class="bordered">
+				</div>
+				<a href="#" class='readmore'>+ read more</a>
+			</div>
+			<div class="col-md-3 single-service">
+				<div class="bordered top-bordered">
+				</div>
+				<h4>HTML5 & CSS3</h4>
+				<p>
+					front-end services
+				</p>
+				<div class="fa fa-html5 icon-service">
+				</div>
+				<div class="bordered">
+				</div>
+				<a href="#" class='readmore'>+ read more</a>
+			</div>
+		</div>
+	</div>
 </div>

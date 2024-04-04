@@ -1,4 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Drawing.Drawing2D;
 
 namespace BinaAz.Models
 {
@@ -7,30 +11,37 @@ namespace BinaAz.Models
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Name is required")]
+        [Required]
+        [StringLength(255)]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Category ID is required")]
+        [Required]
+        [ForeignKey("Category")]
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+        
+        
 
-        [Required(ErrorMessage = "Brand ID is required")]
-        public decimal Area { get; set; }
 
-        [Required(ErrorMessage = "Price is required")]
-        [Range(0.01, double.MaxValue, ErrorMessage = "Price must be greater than 0")]
+        [Required]
+        [Column(TypeName = "decimal(10, 2)")]
+        [Range(0.01, double.MaxValue, ErrorMessage = "Price invalid")]
         public decimal Price { get; set; }
 
-        [Required(ErrorMessage = "Quantity is required")]
-        [Range(1, int.MaxValue, ErrorMessage = "Quantity must be greater than 0")]
-        public int Quantity { get; set; }
+        [Required]
+        public int Area { get; set; }
 
+        [StringLength(1000)]
+        
         public string Description { get; set; }
 
-        public bool IsDeleted { get; set; }
-        [Required(ErrorMessage = "NumberofRooms is required")]
-        public int RoomCount { get; set; }
+        public bool IsActive { get; set; }
 
+
+       
+        public List<image> Images { get; set; } 
+        public List<ProductAttribute> Attributes { get; set; }
+        
 
     }
 }

@@ -1,49 +1,124 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BinaAz</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/BinaAz.styles.css" asp-append-version="true" />
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BinaAz</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+﻿<!doctype html>
+<html lang="en-us">
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - BinaAz - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+<!-- Mirrored from demoxml.com/html/sweethome/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Mar 2024 16:55:55 GMT -->
+<head>
+	<!--Page Title-->
+	<title>SweetHome</title>
+	<!--Meta Tags-->
+	<meta charset="UTF-8">
+	<meta name="author" content="">
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<!-- Set Viewport-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href="~/sweethome/css/bootstrap.min.css" type="text/css" />
+	<link rel="stylesheet" href="~/sweethome/css/bootstrap-theme.min.css" type="text/css" />
+	<link rel="stylesheet" href="~/sweethome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="~/sweethome/css/flexslider.css">
+	<link rel="stylesheet" href="~/sweethome/css/select-theme-default.css">
+	<link rel="stylesheet" href="~/sweethome/css/owl.carousel.css">
+	<link rel="stylesheet" href="~/sweethome/css/owl.theme.css">
+	<link rel="stylesheet" href="~/sweethome/css/style.css" type="text/css" />
+	<!--[if IE]>
+			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+</head>
+<body id='top'>
+	<header>
+		<div id="top-strip">
+			<div class="container">
+				<ul class="pull-left social-icons">
+					<li><a href="#" class="fa fa-google-plus"></a></li>
+					<li><a href="#" class="fa fa-twitter"></a></li>
+					<li><a href="#" class="fa fa-pinterest"></a></li>
+					<li><a href="#" class="fa fa-dribbble"></a></li>
+					<li><a href="#" class="fa fa-linkedin"></a></li>
+					<li><a href="#" class="fa fa-facebook"></a></li>
+				</ul>
+				<div id="login-box" class='pull-right'>
+					<a href="#" class='fa fa-user'><span>Login</span></a>
+					<a href="#" class='fa fa-pencil'><span>Register</span></a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- /Header -->
+    
+		@RenderBody()
+	
+	<!-- footer-section -->
+	<footer>
+		<div class="container">
+			<div class="col-md-3 footer-about">
+				<a class="logo" href="#"><img src="img/logo.png" alt="logo"></a>
+				<p>
+					This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin lorem quis.
+				</p>
+			</div>
+			<div class="col-md-3 footer-recent-posts">
+				<h3 class='footer-title'>recent posts</h3>
+				<ul>
+					<li><a href="#"><i class="fa fa-arrow-circle-right"></i> New Search Platform Update</a></li>
+					<li><a href="#"><i class="fa fa-arrow-circle-right"></i> Envato's Most Wanted - $5,000 for Ghost Themes</a></li>
+					<li><a href="#"><i class="fa fa-arrow-circle-right"></i> Update: WordPress Theme Submission Requirements</a></li>
+				</ul>
+			</div>
+			<div class="col-md-3 footer-contact-info">
+				<h3 class='footer-title'>contact info</h3>
+				<p class="website-number">
+					<i class="fa fa-phone"></i> 900 123 456 789
+				</p>
+				<p class="website-email">
+					<i class="fa fa-envelope"></i> robbhatman@sweethome.com
+				</p>
+				<p class="website-fax">
+					<i class="fa fa-print"></i> 900 123 456 789
+				</p>
+			</div>
+			<div class="col-md-3 footer-newsletter">
+				<h3 class='footer-title'>newsletter</h3>
+				<p>
+					This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet.
+				</p>
+				<form class='footer-search'>
+					<input type="text" placeholder='e-mail'>
+					<input type="submit">
+				</form>
+			</div>
+		</div>
+	</footer>
+	<div class="bottom-strip">
+		<div class="container">
+			<div class="col-md-4">
+				<p class='pull-left'>
+					© 2014 Sweet Home, All Rights Reserved
+				</p>
+			</div>
+			<div class="col-md-4 bottom-strip-middle">
+				<a href="#top" class='fa fa-arrow-circle-up' id='backtop-btn'></a>
+			</div>
+			<div class="col-md-4">
+				<ul class="social-icons">
+					<li><a href="#" class="fa fa-google-plus"></a></li>
+					<li><a href="#" class="fa fa-twitter"></a></li>
+					<li><a href="#" class="fa fa-pinterest"></a></li>
+					<li><a href="#" class="fa fa-dribbble"></a></li>
+					<li><a href="#" class="fa fa-linkedin"></a></li>
+					<li><a href="#" class="fa fa-facebook"></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- Javascript -->
+	<script type="text/javascript" src="~/sweethome/js/jquery-2.1.0.min.js"></script>
+	<script type="text/javascript" src="~/sweethome/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="~/sweethome//jquery.flexslider-min.js"></script>
+	<script type="text/javascript" src="~/sweethome/js/select.min.js"></script>
+	<script type="text/javascript" src="~/sweethome/js/owl.carousel.min.js"></script>
+	<script type="text/javascript" src="~/sweethome/js/script.js"></script>
 </body>
+
+<!-- Mirrored from demoxml.com/html/sweethome/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Mar 2024 16:56:10 GMT -->
 </html>

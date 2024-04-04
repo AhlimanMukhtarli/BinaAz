@@ -1,23 +1,29 @@
-﻿using ClothingShop.Models;
+﻿
+using BinaAz.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
-namespace ClothingShop.Areas.Admin.Controllers
+using BinaAz.Models;
+
+
+namespace Binaz.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class CategoryController : Controller
     {
-        private readonly MyDbContext _context;
-        public CategoryController(MyDbContext context)
+        private readonly AppDbContext _context;
+        public CategoryController(AppDbContext context)
         {
             _context = context;
         }
-        public IActionResult Category()
+        public IActionResult GetCategory()
         {
             return View(_context.Categories.ToList());
         }
         [HttpGet]
         public IActionResult Add()
         {
+            ViewBag.Categories = _context.Categories.ToList();
             return View();
         }
         [HttpPost]
@@ -25,7 +31,7 @@ namespace ClothingShop.Areas.Admin.Controllers
         {
             _context.Categories.Add(category);
             _context.SaveChanges();
-            return RedirectToAction("Category");
+            return RedirectToAction("GetCategory");
         }
         public IActionResult Delete(int id)
         {
@@ -35,12 +41,13 @@ namespace ClothingShop.Areas.Admin.Controllers
                 _context.Categories.Remove(c);
             }
             _context.SaveChanges();
-            return RedirectToAction("Category");
+            return RedirectToAction("GetCategory");
         }
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            return View(_context.Blogs.Find(id));
+            ViewBag.Categories = _context.Categories.ToList();
+            return View(_context.Categories.Find(id));
         }
         [HttpPost]
         public IActionResult Edit(Category newC)
@@ -49,9 +56,27 @@ namespace ClothingShop.Areas.Admin.Controllers
             if (c != null)
             {
                 c.Name = newC.Name;
+                c.ParentId = newC.ParentId;
             }
             _context.SaveChanges();
-            return RedirectToAction("Category");
+            return RedirectToAction("GetCategory");
+        }
+        public IActionResult Activation(int id)
+        {
+            var category = _context.Categories.Find(id);
+            if (category != null)
+            {
+                if (category.IsActive)
+                {
+                    category.IsActive = false;
+                }
+                else
+                {
+                    category.IsActive = true;
+                }
+                _context.SaveChanges();
+            }
+            return RedirectToAction("GetCategory");
         }
     }
 }

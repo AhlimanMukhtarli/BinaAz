@@ -1,7 +1,6 @@
-﻿using ClothingShop.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace ClothingShop.Areas.Admin.Controllers
+namespace BinaAz.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class HomeController : Controller
@@ -10,6 +9,5 @@ namespace ClothingShop.Areas.Admin.Controllers
         {
             return View();
         }
-      
     }
 }
