@@ -1,82 +1,59 @@
 ﻿
 using BinaAz.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-
 using BinaAz.Models;
 
 
-namespace Binaz.Areas.Admin.Controllers
+namespace BinaAz.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly AppDbContext _context;
-        public CategoryController(AppDbContext context)
+        public CategoryController(AppDbContext context) 
         {
             _context = context;
         }
-        public IActionResult GetCategory()
+        public IActionResult Index()
         {
-            return View(_context.Categories.ToList());
-        }
-        [HttpGet]
-        public IActionResult Add()
-        {
-            ViewBag.Categories = _context.Categories.ToList();
             return View();
         }
+        public JsonResult CategoryList()
+        {
+            return Json(_context.Categories.ToList());
+        }
         [HttpPost]
-        public IActionResult Add(Category category)
+        public JsonResult Add(Category category)
         {
             _context.Categories.Add(category);
             _context.SaveChanges();
-            return RedirectToAction("GetCategory");
-        }
-        public IActionResult Delete(int id)
-        {
-            var c = _context.Categories.Find(id);
-            if (c != null)
-            {
-                _context.Categories.Remove(c);
-            }
-            _context.SaveChanges();
-            return RedirectToAction("GetCategory");
+            return Json("Added.");
         }
         [HttpGet]
-        public IActionResult Edit(int id)
+        public JsonResult Edit(int id)
         {
-            ViewBag.Categories = _context.Categories.ToList();
-            return View(_context.Categories.Find(id));
+            var category = _context.Categories.FirstOrDefault(b => b.Id == id);
+            return Json(category);
         }
         [HttpPost]
-        public IActionResult Edit(Category newC)
+        public JsonResult Update(Category category)
         {
-            var c = _context.Categories.Find(newC.Id);
-            if (c != null)
-            {
-                c.Name = newC.Name;
-                c.ParentId = newC.ParentId;
-            }
+            _context.Categories.Update(category);
             _context.SaveChanges();
-            return RedirectToAction("GetCategory");
+            return Json("Succesfully.");
         }
-        public IActionResult Activation(int id)
+        [HttpPost]
+        public JsonResult Delete(int id)
         {
-            var category = _context.Categories.Find(id);
+            var category = _context.Categories.FirstOrDefault(b => b.Id == id);
             if (category != null)
             {
-                if (category.IsActive)
-                {
-                    category.IsActive = false;
-                }
-                else
-                {
-                    category.IsActive = true;
-                }
+                _context.Categories.Remove(category);
                 _context.SaveChanges();
+                return Json("Succesfully.");
             }
-            return RedirectToAction("GetCategory");
+            return Json("Not Found.");
+
         }
     }
 }

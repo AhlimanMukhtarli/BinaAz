@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace BinaAz.Models.DataModel
+namespace BinaAz.Models
 {
     public class Program
     {
@@ -14,7 +14,7 @@ namespace BinaAz.Models.DataModel
             builder.Services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection")));
 
-            builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>()
+            builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<AppDbContext>()
             .AddDefaultTokenProviders();
             builder.Services.AddScoped<Extensions.IEmailService, Extensions.EmailSender>();
             var app = builder.Build();

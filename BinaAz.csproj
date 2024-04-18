@@ -25,11 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Views\Category\" />
-    <Folder Include="Areas\Admin\Views\Image\" />
     <Folder Include="Areas\Admin\Views\User\" />
-    <Folder Include="Areas\Admin\Views\Role\" />
-    <Folder Include="Areas\Admin\Views\Product\" />
     <Folder Include="wwwroot\js\" />
   </ItemGroup>
 

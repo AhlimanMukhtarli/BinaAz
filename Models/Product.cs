@@ -30,6 +30,7 @@ namespace BinaAz.Models
 
         [Required]
         public int Area { get; set; }
+        public byte RoomCount { get; set; } 
 
         [StringLength(1000)]
         

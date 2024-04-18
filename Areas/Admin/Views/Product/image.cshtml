@@ -1,0 +1,172 @@
+﻿
+@model ImageViewModel
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Dashboard</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Dashboard</a></li>
+                            <li><a asp-area="Admin" asp-controller="Product" asp-action="GetProduct">Table</a></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+
+                    <div class="card-body">
+                        @if (Model.Images.Count == 0)
+                        {
+                            <div class="alert alert-success" role="alert"> Their isn't anything. </div>
+                        }
+                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Image</th>
+                                    <th>ImageUrl</th>
+                                    <th>Operations</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Images)
+                                {
+                                    <tr>
+                                        <td>@item.Id</td>
+                                        <td><img src="~/images/products/@item.ImageUrl" style="height:100px;" alt="Product Image" /></td>
+                                        <td>@item.ImageUrl</td>
+                                        <td class="fs-5">
+                                            <a asp-area="Admin" asp-controller="Product" asp-action="DeleteImage" asp-route-id="@item.Id"><i class="fa fa-trash ms-3 h-50 d-inline-block"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <form asp-controller="Product" asp-action="AddImage" method="post" enctype="multipart/form-data" class="col-lg-8">
+
+                    <div class="container">
+                        <input asp-for="Id" type="hidden" class="form-control" required>
+                        <label asp-for="ImgFile"> <i class="fa fa-upload"></i> &nbsp; Choose A Photo </label><br />
+                        <input type="file" id="file-input" asp-for="ImgFile" onchange="preview()">
+
+                        <p id="num-of-files">No Files Chosen</p>
+                        <div id="images" class="d-flex"></div>
+                    </div>
+                    <button type="submit" class="btn btn-lg btn-info btn-block">
+                        <span id="payment-button-amount">Add</span>
+                        <span id="payment-button-sending" style="display:none;">Sending…</span>
+                    </button>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+    <style>
+        .form-img {
+            display: flex;
+            font-size: 1rem;
+            margin: 0 auto;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
+            color: rgb(20, 20, 28);
+        }
+
+        .input-preview__src {
+            display: none;
+        }
+
+        .input-preview {
+            border: dashed black 0.175em;
+            border-radius: 0.5em;
+            width: 400px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: relative;
+            transition: ease-in-out 750ms;
+        }
+
+            .input-preview::after {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                transform: translateY(50%);
+                content: "Choose a file...";
+                font-style: italic;
+                font-size: 1em;
+            }
+
+        .has-image::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(50, 50, 50, 0.5);
+            content: " ";
+            transition: ease-in-out 750ms;
+        }
+
+        .has-image::after {
+            content: "Choose another file...";
+            color: white;
+        }
+
+        figure {
+            margin: 0 8px;
+        }
+
+    </style>
+</div>
+@section scripts {
+    <script>
+        let fileInput = document.getElementById("file-input");
+        let imageContainer = document.getElementById("images");
+        let numOfFiles = document.getElementById("num-of-files");
+
+        function preview() {
+            imageContainer.innerHTML = "";
+            numOfFiles.textContent = `${fileInput.files.length} Files Selected`;
+
+            for (i of fileInput.files) {
+                let reader = new FileReader();
+                let figure = document.createElement("figure");
+                let figCap = document.createElement("figcaption");
+                figCap.innerText = i.name;
+                figure.appendChild(figCap);
+                reader.onload = () => {
+                    let img = document.createElement("img");
+                    img.setAttribute("src", reader.result);
+                    figure.insertBefore(img, figCap);
+                }
+                imageContainer.appendChild(figure);
+                reader.readAsDataURL(i);
+            }
+        }
+    </script>
+}

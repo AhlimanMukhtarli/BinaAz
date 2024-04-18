@@ -1,0 +1,224 @@
+﻿@model Category
+
+@{
+    ViewBag.Title = "Category CRUD";
+}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Dashboard</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="#">Table</a></li>
+                            <li class="active">Data table</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <button type="button" class="btn btn-primary" id="btnAdd">Add Category </button>
+                    </div>
+                    <div class="card-body">
+                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tblBody">
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="AddModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalTitle">Category Details</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" asp-for="Id" value="0">
+                <div class="form-group">
+                    <label asp-for="Name">Name:</label>
+                    <input asp-for="Name" type="text" class="form-control" required>
+                </div>
+            </div>
+            <div class="modal-body">
+                <button type="submit" class="btn btn-success" id="Save" onclick="Insert()">Save</button>
+                <button class="btn btn-success" data-dismiss="modal" id="Close" onclick="HideModal()">Close</button>
+                <button type="submit" class="btn btn-primary" style="display:none;" onclick="Update()" id="Update">Update</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            GetBrands();
+        });
+        function GetBrands() {
+            $.ajax({
+                url: '/Admin/Category/CategoryList',
+                type: 'get',
+                dataType: 'json',
+                contentType: 'application/json;charset=utf-8',
+                success: function (response) {
+                    if (response == null || response == undefined || response.length == 0) {
+                        var object = '';
+
+                        object += '<tr>';
+                        object += '<td>' + 'Categories not available' + '</td>';
+                        object += '</tr>';
+                        $('#tblBody').html(object);
+                    } else {
+                        var object = '';
+                        $.each(response, function (index, item) {
+                            object += '<tr>';
+                            object += '<td>' + item.id + '</td>';
+                            object += '<td>' + item.name + '</td>';
+                            object += '<td><a href="#" class="btn btn-primary btn-sm" onclick="Edit(' + item.id + ')">Edit</a> <a href="#" class="btn btn-danger btn-sm" onclick="Delete(' + item.id + ')">Delete</a></td>';
+                            object += '</tr>';
+                        });
+                        $('#tblBody').html(object);
+                    }
+                },
+                error: function () {
+                    alert('Unable to fetch data');
+                }
+            });
+        }
+
+        $('#btnAdd').click(function () {
+            Clear();
+            $('#AddModal').modal('show');
+            $('#Save').css('display', 'block');
+            $('#Update').css('display', 'none');
+        });
+        function Insert() {
+        
+            var formData = new Object();
+            formData.id = $('#Id').val();
+            formData.name = $('#Name').val();
+            $.ajax({
+                url: '/Admin/Category/Add',
+                data: formData,
+                type: 'post',
+                success: function (response) {
+                    if (response == null || response == undefined || response.length == 0) {
+                        alert("Failed");
+
+                    } else {
+                        HideModal();
+                        GetBrands();
+                        alert(' save data');
+                    }
+                },
+                error: function () {
+                    alert('Unable to fetch data');
+                }
+            });
+
+        }
+        function HideModal() {
+            $('#AddModal').modal('hide');
+        }
+        function Edit(id){
+            $.ajax({
+                url: '/Admin/Category/Edit?id='+id,
+                type: 'get',
+                contentType: 'application/json;charset=utf-8',
+                dataType: 'json',
+                success: function (response) {
+                    if (response == null || response == undefined || response.length == 0) {
+                        alert('Unable to fetch data');
+                    } else {
+                        $('#AddModal').modal('show');
+                        $('#Save').css('display','none');
+                        $('#Update').css('display','block');
+                        $('#Id').val(response.id);
+                        $('#Name').val(response.name);
+                    }
+                },
+                error: function () {
+                    alert('Unable to fetch data');
+                }
+            });
+            Clear();
+        }
+        function Update() {
+            var formData = new Object();
+            formData.id = $('#Id').val();
+            formData.name = $('#Name').val();
+            $.ajax({
+                url: '/Admin/Category/Update',
+                data: formData,
+                type: 'post',
+                success: function (response) {
+                    if (response == null || response == undefined || response.length == 0) {
+                        alert("Failed");
+
+                    } else {
+                        HideModal();
+                        GetBrands();
+                        alert('Unable to save data');
+                    }
+                },
+                error: function () {
+                    alert('Unable to fetch data');
+                }
+            });
+        }
+        function Delete(id) {
+            if(confirm("Are you sure to delete?"))
+            $.ajax({
+                url: '/Admin/Category/Delete?id=' + id,
+                type: 'post',
+                success: function (response) {
+                    if (response == null || response == undefined || response.length == 0) {
+                        alert('Unable to fetch dazta');
+                    } else {
+                        GetBrands();
+                        alert(response);
+                    }
+                },
+                error: function () {
+                    alert('Unable to fetch data');
+                }
+            });
+        }
+         function Clear(){
+            $('#Id').val(''); 
+            $('#Name').val('');
+         }
+    </script>
+}

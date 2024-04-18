@@ -1,4 +1,12 @@
-﻿<div class="search-section">
+﻿@model List<Product>
+<div class="page-title-section">
+	<div class="container">
+		<div class="pull-left page-title">
+			
+		</div>
+	</div>
+</div>
+<div class="search-section">
 		<div class="container">
 			<div style="background-color: red;">
 				<ul style="    display: flex;
@@ -80,10 +88,12 @@
 					</div>
 				</div>
 				<!-- /Single-item -->
+			@foreach(var item in Model)
+			{
 				<div class="col-md-3 listing-single-item">
 					<div class="item-inner">
 						<div class="image-wrapper">
-							<img src="img/listings/03_img-2.png" alt="gallery">
+							<img src="~//" alt="gallery">
 							<a href="#" class='fa fa-building-o property-type-icon'></a>
 							<a href="#" class='featured'><i class='fa fa-star'></i>featured</a>
 						</div>
@@ -103,7 +113,9 @@
 						</div>
 					</div>
 				</div>
-				<!-- /Single-item -->
+
+			}
+			<!-- /Single-item -->
 				<div class="col-md-3 listing-single-item">
 					<div class="item-inner">
 						<div class="image-wrapper">
@@ -267,7 +279,6 @@
 						</div>
 					</div>
 				</div>
-				<!-- /Single-item -->
 			</div>
 			<div class="pagination-wrapper">
 				<ul class="pagination">
