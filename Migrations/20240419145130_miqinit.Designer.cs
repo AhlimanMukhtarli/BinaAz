@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BinaAz.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240405113803_miqinit")]
+    [Migration("20240419145130_miqinit")]
     partial class miqinit
     {
         /// <inheritdoc />
@@ -149,16 +149,16 @@ namespace BinaAz.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9d809efd-14fd-4284-9ee0-b953de35d58c",
+                            ConcurrencyStamp = "9604e344-b265-43b6-a4ad-d56c454eb423",
                             Email = "ehliman270@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             Name = "Ehliman",
                             NormalizedEmail = "EHLIMAN@&)@GMAIL.COM",
                             NormalizedUserName = "EHLIMAN.ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEInGkSDdGS+ps2LEvQEyhXx1D8tP7iFD4xEwtwOkHrpLK08Qz9ojU1/5bwaM4GyZQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFeM5A5ypl/I/8cPRsAWSOXSRjvE6Bc2KY4tcZ/3nRgJqN+AW53X0Vy6VuKX/WbofA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "afb8d2cb-d751-4b18-b5a6-40607d1569e8",
+                            SecurityStamp = "a07b7e9b-d107-4ccf-a76d-0e1ef9697806",
                             Surname = "Mukhtarli",
                             TwoFactorEnabled = false,
                             UserName = "Ehliman.admin"
@@ -220,6 +220,9 @@ namespace BinaAz.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(10, 2)");
+
+                    b.Property<byte>("RoomCount")
+                        .HasColumnType("tinyint");
 
                     b.HasKey("Id");
 

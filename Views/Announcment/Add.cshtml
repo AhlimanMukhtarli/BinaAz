@@ -1,31 +1,40 @@
 ﻿@model Product
 
 <div class="d-flex  justify-content-around" style="margin-top:15rem;">
-    <form asp-controller="Product" asp-action="Add" method="post" enctype="multipart/form-data" class="col-lg-8 needs-validation" novalidate>
+    <form asp-controller="Announcment" asp-action="Add" method="post" enctype="multipart/form-data" class="col-lg-8 needs-validation" novalidate>
         <div class="card">
             <div class="card-header"><strong>Product</strong><small> Form</small></div>
             <div class="card-body card-block">
                 <div class="form-group">
                     <label asp-for="Name" class=" form-control-label">Name</label>
                     <input asp-for="Name" type="text" placeholder="Name" class="form-control" required>
+                    <span class="text-danger" asp-validation-for="Name"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Price" class="form-control-label">Price</label>
                     <input type="text" asp-for="Price" placeholder="Price" class="form-control" required>
+                    <span class="text-danger" asp-validation-for="Price"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Area" class="form-control-label">Area</label>
                     <input type="text" asp-for="Area" placeholder="Area" class="form-control" required>
+                    <span class="text-danger" asp-validation-for="Area"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="RoomCount" class="form-control-label">RoomCount</label>
+                    <input type="text" asp-for="RoomCount" placeholder="RoomCount" class="form-control" required>
+                    <span class="text-danger" asp-validation-for="RoomCount"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="CategoryId" class="form-control-label">Select Category</label>
-                    <select asp-for="CategoryId" id="select" class="form-control" required>
+                    <select asp-for="CategoryId" id="select" class="form-control" >
                         <option value="0">Please select</option>
                         @foreach (var item in ViewBag.Categories)
                         {
                             <option value="@item.Id">@item.Name</option>
                         }
                     </select>
+                    <span class="text-danger" asp-validation-for="CategoryId"></span>
                </div>
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@2.0.1/dist/css/multi-select-tag.css">
 

@@ -16,5 +16,10 @@ namespace BinaAz.Controllers
 			ViewBag.Categories = _context.Categories.ToList();
 			return View(_context.Products.Include(x => x.Category).ToList());
 		}
+		public IActionResult Details(int Id)
+		{
+			var p=_context.Products.Find(Id);
+			return View(p);
+		}
 	}
 }

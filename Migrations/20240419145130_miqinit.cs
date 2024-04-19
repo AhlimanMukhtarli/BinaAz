@@ -192,6 +192,7 @@ namespace BinaAz.Migrations
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
                     Area = table.Column<int>(type: "int", nullable: false),
+                    RoomCount = table.Column<byte>(type: "tinyint", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
@@ -261,7 +262,7 @@ namespace BinaAz.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Surname", "TwoFactorEnabled", "UserName" },
-                values: new object[] { 1, 0, "9d809efd-14fd-4284-9ee0-b953de35d58c", "ehliman270@gmail.com", true, true, null, "Ehliman", "EHLIMAN@&)@GMAIL.COM", "EHLIMAN.ADMIN", "AQAAAAIAAYagAAAAEEInGkSDdGS+ps2LEvQEyhXx1D8tP7iFD4xEwtwOkHrpLK08Qz9ojU1/5bwaM4GyZQ==", null, false, "afb8d2cb-d751-4b18-b5a6-40607d1569e8", "Mukhtarli", false, "Ehliman.admin" });
+                values: new object[] { 1, 0, "9604e344-b265-43b6-a4ad-d56c454eb423", "ehliman270@gmail.com", true, true, null, "Ehliman", "EHLIMAN@&)@GMAIL.COM", "EHLIMAN.ADMIN", "AQAAAAIAAYagAAAAEFeM5A5ypl/I/8cPRsAWSOXSRjvE6Bc2KY4tcZ/3nRgJqN+AW53X0Vy6VuKX/WbofA==", null, false, "a07b7e9b-d107-4ccf-a76d-0e1ef9697806", "Mukhtarli", false, "Ehliman.admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

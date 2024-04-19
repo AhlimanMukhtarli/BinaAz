@@ -23,6 +23,7 @@ body {
 }
 p, h1, h2, h3, h4, h5, h6, ul {
 	margin: 0;
+	color: #000;
 }
 img {
 	max-width: 100%;
@@ -33,11 +34,11 @@ ul {
 }
 a {
 	text-decoration: none;
-	color: #ff9a9c;
+	color: #fff;
 	transition: all 0.3s ease;
 	&:hover {
 		text-decoration: none;
-		color: #fe4447;
+		color: #ffff;
 	}
 }
 :focus {
@@ -47,7 +48,7 @@ a {
 	min-height: 100vh;
 	display: flex;
 	align-items: center;
-	background: url('../images/bg-registration-form-4.jpg') no-repeat;
+	background: url('../images/gri.jpg') no-repeat;
 	background-size: cover;
 }
 .inner {
@@ -66,6 +67,7 @@ a {
 	padding-right: 15px;
 }
 form {
+	background-color:#888;
 	width: 50%;
 	padding-top: 77px;
 	padding-right: 60px;
@@ -76,7 +78,7 @@ h3 {
 	font-family: "ElMessiri-SemiBold";
 	text-align: center;
 	margin-bottom: 27px;
-	color: #ff9a9c;
+	color: #fff;
 }
 .form-holder {
 	padding-left: 24px;
@@ -89,7 +91,7 @@ h3 {
 		width: 10px;
 		height: 10px;
 		border-radius: 50%;
-		border: 2px solid #ff9a9c;
+		border: 2px solid rgba(0, 0, 0, 0.2);
 		position: absolute;
 		left: 1px;
 		top: 50%;
@@ -98,7 +100,7 @@ h3 {
 	&.active {
 		&:before {
 	        border: 2px solid transparent;
-	        background: #ff9a9c;
+	        background: rgba(0, 0, 0, 0.2);
 		}
 	}
 }
@@ -202,7 +204,7 @@ button {
 	align-items: center;
 	justify-content: center;
 	padding: 0;
-	background: #ff9a9c;
+	background: #000;
 	font-size: 15px;
 	color: #fff;
 	text-transform: uppercase;
@@ -284,6 +286,6 @@ button {
 		padding: 0px 15px 70px;
 	}
 	.wrapper {
-		background: none;
+		background-color:#999 ;
 	}
 }

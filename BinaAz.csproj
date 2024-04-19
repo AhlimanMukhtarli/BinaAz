@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Views\User\" />
+    <Folder Include="wwwroot\images\products\" />
     <Folder Include="wwwroot\js\" />
   </ItemGroup>
 

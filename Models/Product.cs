@@ -20,8 +20,6 @@ namespace BinaAz.Models
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         
-        
-
 
         [Required]
         [Column(TypeName = "decimal(10, 2)")]

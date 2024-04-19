@@ -21,79 +21,74 @@ namespace BinaAz.Controllers
         // GET: Product
         public IActionResult GetProduct()
         {
-            var products = _context.Products.Include(p => p.Category);
-            return View(products.ToList());
+            return View(_context.Products.Include(x => x.Category).ToList());
         }
-
-        // GET: Product/Create
         [HttpGet]
-
         public IActionResult Add()
         {
             ViewBag.Categories = _context.Categories.ToList();
             return View();
         }
 
-        // POST: Product/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(Product model)
         {
-                _context.Add(model);
+            
+            {
+                await _context.Products.AddAsync(model);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            return View(model);
+
+                return RedirectToAction("Image", new { id = model.Id });
+            }
+            // Handle invalid model state here
         }
 
-        // GET: Product/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var product = await _context.Products.FindAsync(id);
-            if (product == null)
-            {
-                return NotFound();
-            }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
             ViewBag.Categories = _context.Categories.ToList();
-            return View(product);
+            return View();
         }
 
-        // POST: Product/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,CategoryId,Price,Area,Description,IsActive")] Product product)
+        public async Task<IActionResult> Edit(ProductViewModel model)
         {
-            if (id != product.Id)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(product);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProductExists(product.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == model.Product.Id);
+                product.Name = model.Product.Name;
+                product.Description = model.Product.Description;
+                product.CategoryId = model.Product.CategoryId;
+                product.RoomCount = model.Product.RoomCount;
+                product.Area = model.Product.Area;
+                product.Price = model.Product.Price;
+                product.IsActive = model.Product.IsActive;
+
+                await _context.SaveChangesAsync();
+
+                
+                await _context.SaveChangesAsync();
+                return RedirectToAction("GetProduct");
             }
-            ViewBag.Categories = _context.Categories.ToList();
-            return View(product);
+            else
+            {
+                return View(model);
+            }
+        }
+
+
+        public IActionResult Delete(int id)
+        {
+            var p = _context.Products.Find(id);
+            if (p != null)
+            {
+                _context.Products.Remove(p);
+            }
+            _context.SaveChanges();
+            return RedirectToAction("GetProduct");
         }
         [HttpGet]
         public IActionResult Image(int id)
@@ -132,54 +127,59 @@ namespace BinaAz.Controllers
                 _context.Images.Remove(p);
             }
             _context.SaveChanges();
-            return RedirectToAction("Image", new { id = id });
+            return RedirectToAction("Image", new { id = p.ProductId });
 
         }
         [HttpGet]
-        //public IActionResult Attributes(int id)
-        //{
-        //    var model = new AttributeViewModel
-        //    {
-        //        ProductId = id,
-        //        ProductAttributes = _context.ProductAttributes.Where(x => x.ProductId == id).ToList()
-        //    };
-        //    return View(model);
-        //}
-
-        // GET: Product/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Attributes(int id)
         {
-            if (id == null)
+            var model = new AttributeViewModel
             {
-                return NotFound();
-            }
+                ProductId = id,
+                ProductAttributes = _context.ProductAttributes.Where(x => x.ProductId == id).ToList()
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult AddAttribute(AttributeViewModel model)
+        {
 
-            var product = await _context.Products
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (product == null)
+            var attribute = new ProductAttribute
             {
-                return NotFound();
+                Name = model.productAttribute.Name,
+                Value = model.productAttribute.Value,
+                ProductId = model.ProductId,
+                IsActive = model.productAttribute.IsActive
+            };
+            _context.ProductAttributes.Add(attribute);
+            _context.SaveChanges();
+
+            return RedirectToAction("Attributes", new { id = model.ProductId });
+
+        }
+        public async Task<IActionResult> DeleteAttribute(int id)
+        {
+            var a = await _context.ProductAttributes.FirstOrDefaultAsync(p => p.Id == id);
+
+            if (a != null)
+            {
+                _context.ProductAttributes.Remove(a);
             }
+            _context.SaveChanges();
+            return RedirectToAction("Attributes", new { id = id });
 
-            return View(product);
         }
-
-        // POST: Product/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        [HttpPost]
+        public IActionResult Activation(int productId, bool isActive)
         {
-            var product = await _context.Products.FindAsync(id);
-            _context.Products.Remove(product);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            var product = _context.Products.Find(productId);
+            if (product != null)
+            {
+                product.IsActive = isActive;
+                _context.SaveChanges();
+            }
+            return RedirectToAction("GetProduct");
         }
-
-        private bool ProductExists(int id)
-        {
-            return _context.Products.Any(e => e.Id == id);
-        }
-
     }
-
 }
+

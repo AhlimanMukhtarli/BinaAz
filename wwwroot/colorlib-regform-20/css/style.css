@@ -19,7 +19,9 @@ body {
   margin: 0; }
 
 p, h1, h2, h3, h4, h5, h6, ul {
-  margin: 0; }
+  margin: 0; 
+  color:#000;
+}
 
 img {
   max-width: 100%; }
@@ -30,11 +32,11 @@ ul {
 
 a {
   text-decoration: none;
-  color: #ff9a9c;
+  color: #ffff;
   transition: all 0.3s ease; }
   a:hover {
     text-decoration: none;
-    color: #fe4447; }
+    color: #ffff; }
 
 :focus {
   outline: none; }
@@ -43,7 +45,7 @@ a {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: url("../images/bg-registration-form-4.jpg") no-repeat;
+  background: url("../images/gri.jpg") no-repeat;
   background-size: cover; }
 
 .inner {
@@ -62,17 +64,19 @@ a {
   padding-right: 15px; }
 
 form {
-  width: 50%;
-  padding-top: 77px;
-  padding-right: 60px;
-  padding-left: 15px; }
+    background-color: #888;
+    width: 50%;
+    padding-top: 77px;
+    padding-right: 60px;
+    padding-left: 15px;
+}
 
 h3 {
   font-size: 35px;
   font-family: "ElMessiri-SemiBold";
   text-align: center;
   margin-bottom: 27px;
-  color: #ff9a9c; }
+  color: #fff; }
 
 .form-holder {
   padding-left: 24px;
@@ -85,14 +89,14 @@ h3 {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    border: 2px solid #ff9a9c;
+    border: 2px solid #000;
     position: absolute;
     left: 1px;
     top: 50%;
     transform: translateY(-50%); }
   .form-holder.active:before {
     border: 2px solid transparent;
-    background: #ff9a9c; }
+    background: rgba(0, 0, 0, 0.2); }
 
 .form-control {
   display: block;
@@ -103,7 +107,7 @@ h3 {
   color: #808080;
   font-size: 13px;
   border: none;
-  background: #f7f7f7;
+  background: #000;
   margin-bottom: 25px; }
   .form-control::-webkit-input-placeholder {
     font-size: 13px;
@@ -176,7 +180,7 @@ button {
   align-items: center;
   justify-content: center;
   padding: 0;
-  background: #ff9a9c;
+  background: #000;
   font-size: 15px;
   color: #fff;
   text-transform: uppercase;
@@ -201,7 +205,7 @@ button {
   margin-left: 26px; }
   .checkbox label {
     cursor: pointer;
-    color: #999; }
+    color: #000; }
   .checkbox input {
     position: absolute;
     opacity: 0;
@@ -216,7 +220,7 @@ button {
   height: 10px;
   width: 10px;
   border-radius: 50%;
-  border: 1px solid #e7e7e7; }
+  border: 1px solid rgba(0, 0, 0, 0.2); }
   .checkmark:after {
     content: "";
     top: 50%;
@@ -225,7 +229,7 @@ button {
     width: 4px;
     height: 4px;
     border-radius: 50%;
-    background: #ff9a9c;
+    background: #000;
     position: absolute;
     display: none; }
 

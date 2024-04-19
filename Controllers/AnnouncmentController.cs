@@ -25,9 +25,14 @@ namespace BinaAz.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(Product model)
         {
-            _context.Add(model);
+            ViewBag.Categories = _context.Categories.ToList();
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            _context.Products.Add(model);
             await _context.SaveChangesAsync();
-            return View(model);
+            return RedirectToAction("Index", "Listings");
         }
     }
 }
